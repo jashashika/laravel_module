@@ -19,6 +19,18 @@ class AppPerformance
         $sFilePath = base_path('storage/Admin/onboarding/onboarding_data_2018_02_25.csv');
         $sFileData = FileReader::simpleCsv($sFilePath);
 
+        $aWeek = [];
+        foreach ($sFileData as $iIndex => $aRow) {
+            $oDate = new DateTime($aRow['created_at']);
+            $iWeek = $oDate->format("W");
+
+            switch($aRow['onboarding_perentage']){
+                case 0 :
+                    break;
+                case
+            }
+        }
+
         return $sFileData;
     }
 }

@@ -16,10 +16,10 @@ class AppPerformanceController extends Controller
     public function onboarding()
     {
         $oAppPerformance = new AppPerformance();
-        $aData['data'] = $oAppPerformance->getOnboardData();
+        $aData = $oAppPerformance->getOnboardData();
 
-//        return response()->json($aData);
+        return response()->json($aData);
 
-        return view('admin::charts.performance.onboarding');
+//        return view('admin::charts.performance.onboarding');
     }
 }

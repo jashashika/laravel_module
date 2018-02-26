@@ -96,8 +96,9 @@
                 marker: {
                     enabled: false
                 },
-                pointInterval: 3600000, // one hour
+                pointInterval: 3600000*24*7, // one hour
                 pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+//                pointStart: 'week'
             }
         },
         series: [{
