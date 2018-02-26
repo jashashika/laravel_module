@@ -14,8 +14,8 @@ return [
     */
 
     'paths' => [
-        realpath(base_path('Modules/Admin/resources/views')),
-        realpath(base_path('Modules/User/resources/views')),
+        realpath(base_path('modules/Admin/resources/views')),
+        realpath(base_path('modules/User/resources/views')),
         realpath(base_path('resources/views')),
     ],
 
