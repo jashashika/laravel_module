@@ -18,8 +18,14 @@ class ModuleServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        $this->app['view']->addNamespace('admin', base_path() . '/modules/Admin/resources/views');
-        $this->app['view']->addNamespace('user', base_path() . '/modules/User/resources/views');
+        // Load module registry form configs
+        $aAllModules = Config::get('modules');
+
+        foreach ($aAllModules as $sModuleFolder => $aModules) {
+            foreach ($aModules as $sModule) {
+                $this->app['view']->addNamespace($sModule, base_path() . '/'.$sModuleFolder.'/'.ucfirst($sModule).'/resources/views');
+            }
+        }
     }
 
     /**
@@ -51,7 +57,7 @@ class ModuleServiceProvider extends ServiceProvider
 
             foreach ($aModules as $sModule) {
 
-                $sRouteFile = base_path('/'.$sModuleFolder.'/' . ucfirst($sModule) . '/routes.php');
+                $sRouteFile = base_path('/' . $sModuleFolder . '/' . ucfirst($sModule) . '/routes.php');
 
                 if (File::exists($sRouteFile)) {
 

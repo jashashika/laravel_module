@@ -5,15 +5,20 @@ namespace Module\Admin\Repositories;
 
 use Module\Core\Helpers\FileReader;
 
-
+/**This class is for application performance checking.
+ * Class AppPerformance
+ * @package Module\Admin\Repositories
+ */
 class AppPerformance
 {
 
     /**
      * this return onboard data
+     * @return array
      */
     public function getOnboardData()
     {
+        //if new milestone is introduced it should come here. best practice is to put this in config file.
         $aMilestones = [100, 99, 95, 92, 90, 85, 80, 75, 70, 60, 55, 50, 45, 40, 35, 30, 20, 0];
 
         // this time takes on-board data from csv file instead of DB table
@@ -36,16 +41,23 @@ class AppPerformance
             ksort($aWeeksCount[$iWeek]);
         }
 
-        $aWeeksPercentages = [];
+        $aGraphData = [];
         foreach ($aWeeksCount as $iWeekNumber => $aStages) {
             $iTotalUsers = $aStages['0'];
-            foreach ($aStages as $iPercentage => $iCount) {
-                $aWeeksPercentages[$iWeekNumber][$iPercentage] = ($iCount / $iTotalUsers) * 100;
-            }
-            ksort($aWeeksPercentages[$iWeekNumber]);
-        }
-        ksort($aWeeksPercentages);
 
-        return ['weekly_counts' => $aWeeksCount, 'weekly_percentages' => $aWeeksPercentages];
+            $aSeries = [];
+
+            $aSeriesData = [];
+            foreach ($aStages as $iPercentage => $iCount) {
+                $aSeriesData[] = [$iPercentage, intval(($iCount / $iTotalUsers) * 100)];
+            }
+
+            $aSeries['name'] = $iWeekNumber.' week';
+            $aSeries['data'] = $aSeriesData;
+
+            $aGraphData[] = $aSeries;
+        }
+
+        return ['weekly_counts' => $aWeeksCount, 'graph_data' => $aGraphData];
     }
 }
