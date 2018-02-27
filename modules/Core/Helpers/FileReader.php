@@ -24,7 +24,7 @@ class FileReader
 
             $aRow = [];
             foreach($aTitles as $iIndex => $sTitle){
-                $aRow[$aTitles[$iIndex]] = (is_numeric($aData[$iIndex])) ? doubleval($aData[$iIndex]) : trim($aData[$iIndex]);
+                $aRow[$aTitles[$iIndex]] = trim($aData[$iIndex]);
             }
             $aCsvData[] = $aRow;
         }

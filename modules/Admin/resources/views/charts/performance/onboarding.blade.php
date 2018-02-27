@@ -4,6 +4,8 @@
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
+{{ print_r($percentages) }}
+
 <script>
     // Data retrieved from http://vikjavev.no/ver/index.php?spenn=2d&sluttid=16.06.2015.
 
@@ -18,11 +20,13 @@
             text: 'weekly statistics'
         },
         xAxis: {
-            type: 'datetime',
+            type: 'category',
             labels: {
                 overflow: 'justify'
-            }
+            },
+            categories : [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         },
+
         yAxis: {
             title: {
                 text: ''
@@ -95,19 +99,19 @@
                 },
                 marker: {
                     enabled: false
-                },
-                pointInterval: 3600000*24*7, // one hour
-                pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
+                }
+              //  pointInterval: 3600000*24*7, // one hour
+              //  pointStart: Date.UTC(2015, 4, 31, 0, 0, 0)
 //                pointStart: 'week'
             }
         },
         series: [{
-            name: 'Hestavollane',
-            data: [20, 80, 80, 60, 10, 30, 1.5, 2.9, 1.9, 2.6, 1.6, 3, 4, 3.6, 4.5, 4.2, 4.5, 4.5, 4, 3.1, 2.7, 4, 2.7, 2.3, 2.3, 4.1, 7.7, 7.1, 5.6, 6.1, 5.8, 8.6, 7.2, 9, 10.9, 11.5, 11.6, 11.1, 12, 12.3, 10.7, 9.4, 9.8, 9.6, 9.8, 9.5, 8.5, 7.4, 7.6]
+            name: 'Week 1',
+            data: [100, 100, 90, 60, 40, 30, 20, 20, 10, 0]
 
         }, {
-            name: 'Vik',
-            data: [0, 0, 0.6, 0.9, 0.8, 0.2, 0, 0, 0, 0.1, 0.6, 0.7, 0.8, 0.6, 0.2, 0, 0.1, 0.3, 0.3, 0, 0.1, 0, 0, 0, 0.2, 0.1, 0, 0.3, 0, 0.1, 0.2, 0.1, 0.3, 0.3, 0, 3.1, 3.1, 2.5, 1.5, 1.9, 2.1, 1, 2.3, 1.9, 1.2, 0.7, 1.3, 0.4, 0.3]
+            name: 'week 2',
+            data: [100, 98, 80, 40, 40, 35, 10, 0, 0]
         }],
         navigation: {
             menuItemStyle: {

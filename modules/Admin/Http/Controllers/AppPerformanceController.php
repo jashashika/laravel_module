@@ -18,8 +18,11 @@ class AppPerformanceController extends Controller
         $oAppPerformance = new AppPerformance();
         $aData = $oAppPerformance->getOnboardData();
 
-        return response()->json($aData);
+        //dd(json_encode($aData['weekly_percentages']));
 
-//        return view('admin::charts.performance.onboarding');
+
+//        return response()->json($aData);
+
+        return view('admin::charts.performance.onboarding', ['percentages' => $aData['weekly_percentages']]);
     }
 }
